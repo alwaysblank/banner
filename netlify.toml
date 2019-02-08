@@ -9,3 +9,9 @@
   # This uses yarn to run its own asset processing, and then trigger a Jekyll
   # build with --incremental.
   command = "yarn deploy"
+
+  # Force yarn version.
+  YARN_VERSION="1.13.0"
+
+  # Force node environment.
+  NODE_ENV="production"
