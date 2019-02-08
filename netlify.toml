@@ -10,8 +10,12 @@
   # build with --incremental.
   command = "yarn deploy"
 
-  # Force yarn version.
-  YARN_VERSION="1.13.0"
+  # Production context: All deploys to the main
+  # repository branch will inherit these settings.
+  [context.production]
+    [context.production.environment]
+      # Force yarn version.
+      YARN_VERSION="1.13.0"
 
-  # Force node environment.
-  NODE_ENV="production"
+      # Force node environment.
+      NODE_ENV="production"
