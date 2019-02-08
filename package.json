@@ -1,0 +1,17 @@
+{
+  "name": "banner",
+  "version": "0.1",
+  "description": "Murmur Creative Jekyll Boilerplate",
+  "main": "index.js",
+  "author": "Ben Martinez-Bateman <ben@alwaysblank.org>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn webpack --config build/webpack.config.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  }
+}
