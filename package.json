@@ -11,7 +11,7 @@
     "build:production": "yarn build --mode=production",
     "deploy": "yarn build:production && bundle exec jekyll build --incremental"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-loader": "^8.0",
     "cache-loader": "^1.2",
     "clean-webpack-plugin": "^0.1.18",
