@@ -42,3 +42,6 @@ exclude:
   - package.json
   - yarn.lock
   - .gitignore
+  - .nvmrc
+  - .ruby-version
+  - netlify.toml

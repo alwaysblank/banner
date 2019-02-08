@@ -3,3 +3,5 @@ _site
 .jekyll-metadata
 .cache-loader
 node_modules
+/assets
+.idea
