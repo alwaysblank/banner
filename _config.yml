@@ -45,3 +45,4 @@ exclude:
   - .nvmrc
   - .ruby-version
   - netlify.toml
+  - build.json

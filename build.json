@@ -1,0 +1,9 @@
+{
+  "entry": {
+    "main": ["./scripts/main.js", "./styles/main.scss"]
+  },
+  "publicPath": "/site",
+  "devUrl": "http://127.0.0.1:4000",
+  "proxyUrl": "http://localhost:3000",
+  "cacheBusting": "[name]_[hash:8]"
+}

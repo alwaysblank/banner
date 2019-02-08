@@ -9,8 +9,11 @@ const Fiber = require('fibers');
 
 const config = {
   cacheBusting: '[name]_[hash]',
+  copy: 'images/**/*',
   paths: {
-    assets: path.resolve(__dirname, '../_assets')
+    root: path.resolve(__dirname, '../'),
+    assets: path.resolve(__dirname, '../_assets'),
+    dist: path.resolve(__dirname, '../assets')
   },
   env: {
     development: false // TODO: THIS NEEDS ACTUAL LOGIC
@@ -31,7 +34,7 @@ const webpackConfig = {
   // Entry points for our main js file
   // https://webpack.js.org/configuration/entry-context/#entry
   entry: [
-    path.resolve(config.paths.assets, 'js/index.js'), 
+    path.resolve(config.paths.assets, 'js/index.js'),
     path.resolve(config.paths.assets, 'styles/style.css')
   ],
   // How and where it should output our bundles
@@ -41,10 +44,20 @@ const webpackConfig = {
     filename: 'js/[name].js?[hash]'
   },
   plugins: [
+    new CleanPlugin([config.paths.dist], {
+      root: config.paths.root,
+      verbose: false,
+    }),
+    new CopyGlobsPlugin({
+      pattern: config.patterns.copy,
+      output: `[path]${assetsFilenames}.[ext]`,
+      manifest: config.manifest,
+    }),
     new MiniCssExtractPlugin({
       filename: `styles/${assetsFilenames.replace('[hash', '[contenthash')}.css`,
       chunkFilename: `styles/${assetsFilenames.replace('[name]', '[id]')}.css`,
     }),
+    new FriendlyErrorsWebpackPlugin(),
   ],
   module: {
     rules: [
