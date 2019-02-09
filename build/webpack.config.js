@@ -1,6 +1,5 @@
 const path = require(`path`);
 
-const webpack = require(`webpack`);
 const CleanPlugin = require(`clean-webpack-plugin`); // removes dist folder
 const CopyGlobsPlugin = require(`copy-globs-webpack-plugin`); // copies assets not referenced in js/css
 const MiniCssExtractPlugin = require(`mini-css-extract-plugin`); // writes css file to disk
@@ -9,43 +8,25 @@ const Fiber = require(`fibers`);
 
 const babelConfig = require(`./babel.config`);
 
-const config = {
-  cacheBusting: `[name]_[hash]`,
-  patterns: {
-    copy: `images/**/*`,
-  },
-  paths: {
-    root: path.resolve(__dirname, `../`),
-    assets: path.resolve(__dirname, `../_assets`),
-    dist: path.resolve(__dirname, `../assets`),
-  },
-  env: {
-    development: false, // TODO: THIS NEEDS ACTUAL LOGIC
-  },
-  enabled: {
-    cacheBusting: false, //TODO: THIS NEEDS ACTUAL LOGIC
-  },
-};
+/** local dependencies */
+const config = require(`./config`);
 
-const assetsFilenames = config.enabled.cacheBusting ? config.cacheBusting : `[name]`;
 const styleLoader = config.env.development ? `style-loader` : MiniCssExtractPlugin.loader;
 
 const webpackConfig = {
-  mode: `development`,
+  mode: config.env.production ? `production` : config.env.development ? `development` : `none`,
   // Compile for usage in a browser-like environment
   // https://webpack.js.org/configuration/target/
   target: `web`,
+  context: config.paths.assets,
   // Entry points for our main js file
   // https://webpack.js.org/configuration/entry-context/#entry
-  entry: [
-    path.resolve(config.paths.assets, `scripts/main.js`),
-    path.resolve(config.paths.assets, `styles/main.scss`),
-  ],
+  entry: config.entry,
   // How and where it should output our bundles
   // https://webpack.js.org/configuration/output/
   output: {
     path: path.resolve(__dirname, `../assets`),
-    filename: `js/[name].js?[hash]`,
+    filename: `js/[name].js`,
   },
   plugins: [
     new CleanPlugin([config.paths.dist], {
@@ -54,15 +35,18 @@ const webpackConfig = {
     }),
     new CopyGlobsPlugin({
       pattern: config.patterns.copy,
-      output: `[path]${assetsFilenames}.[ext]`,
-      manifest: config.manifest,
+      output: `[path][name].[ext]`,
     }),
     new MiniCssExtractPlugin({
-      filename: `styles/${assetsFilenames.replace(`[hash`, `[contenthash`)}.css`,
-      chunkFilename: `styles/${assetsFilenames.replace(`[name]`, `[id]`)}.css`,
+      filename: `styles/[name].css`,
+      chunkFilename: `styles/[id].css`,
     }),
     new FriendlyErrorsWebpackPlugin(),
   ],
+  resolve: {
+    modules: [config.paths.assets, `node_modules`],
+    enforceExtension: false,
+  },
   module: {
     rules: [
       {
