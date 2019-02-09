@@ -31,7 +31,7 @@ const webpackConfig = {
   // https://webpack.js.org/configuration/output/
   output: {
     path: path.resolve(__dirname, `../assets`),
-    filename: `js/[name].js`,
+    filename: `scripts/[name].js`,
   },
   optimization: {
     noEmitOnErrors: config.env.production || config.enabled.watcher,

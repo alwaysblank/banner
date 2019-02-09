@@ -92,6 +92,23 @@ Older versions of yarn will throw an error that says something like this:
 
 Something's deprecated! The solution is to use a version of yarn newer than 1.10.0.
 
+### PhpStorm Syntax Highlighting
+
+By default, PhpStorm doesn't offer any syntax highlighting for Liquid templates (and in fact
+if they are `.html` files it will complain about bad formatting) out of the box. Fortunately,
+it has support for Twig templates, which appear to be identical.
+
+To enable Liquid syntax highlighting for templates, you'll need to do the following:
+
+1. Rename any templates with a `.html` extension to `.liquid`.
+2. Go to *Settings > Editor > File Types*, find the "Twig" file type, and add `*.liquid`
+to the list of file types it uses. Keep in mind that this also means you would need to
+rename and `include` or similar tags: 
+`{%- include head.html -%}` => `{%- include head.liquid -%}` 
+
+**Note:** This only applies to using Liquid tags in HTML templates; I don't believe
+this package would support the use of Liquid tags in CSS or JS files.
+
 ## Notes
 
 ### Cache-busting and Hashes

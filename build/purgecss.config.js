@@ -32,7 +32,7 @@ module.exports = {
   extractors: [
     {
       extractor: TailwindExtractor,
-      extensions: [`js`, `html`, `md`],
+      extensions: [`js`, `html`, `md`, `liquid`],
     },
   ],
 };

@@ -26,7 +26,7 @@ const config = merge(
         },
         patterns: {
             copy: `images/**/*`,
-            html: [`_layouts/*.html`, `_includes/*.html`],
+            html: [`_layouts/**/*`, `_includes/**/*`],
         },
     },
     userConfig

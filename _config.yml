@@ -47,3 +47,4 @@ exclude:
   - netlify.toml
   - build.json
   - README.md
+  - .cache-loader
