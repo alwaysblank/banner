@@ -59,6 +59,7 @@ yarn deploy
 ```
 
 **COMING SOON**
+
 Build and watch site and assets for development:
 ```bash
 yarn develop
@@ -98,6 +99,6 @@ Something's deprecated! The solution is to use a version of yarn newer than 1.10
 A common technique for invalidating cached versions of assets when they change is to add
 a hash to the filename during the build process. This then requires some kind of system
 that operates at runtime to determine what the correct hashed filename is. Fortunately,
-with Netlify such a system is not necessary: Netlify has (Instant Cache Invalidation)[https://www.netlify.com/blog/2015/09/11/instant-cache-invalidation/]
+with Netlify such a system is not necessary: Netlify has [Instant Cache Invalidation](https://www.netlify.com/blog/2015/09/11/instant-cache-invalidation/)
 that using its own fingerprinting of assets to determine when they've changed an
 instantly invalidate those items cached across its CDN.
