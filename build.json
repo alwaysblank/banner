@@ -3,7 +3,7 @@
     "main": ["./scripts/main.js", "./styles/main.scss"]
   },
   "root": "../",
-  "publicPath": "/site",
+  "publicPath": "/_site",
   "devUrl": "http://127.0.0.1:4000",
   "proxyUrl": "http://localhost:3000"
 }
