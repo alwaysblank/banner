@@ -2,7 +2,6 @@
   "name": "banner",
   "version": "0.1",
   "description": "Murmur Creative Jekyll Boilerplate",
-  "main": "index.js",
   "author": "Ben Martinez-Bateman <ben@alwaysblank.org>",
   "license": "MIT",
   "private": true,
