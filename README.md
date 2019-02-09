@@ -109,6 +109,27 @@ rename and `include` or similar tags:
 **Note:** This only applies to using Liquid tags in HTML templates; I don't believe
 this package would support the use of Liquid tags in CSS or JS files.
 
+### Build Fails on Node or Ruby Version Constraint
+
+You may run into an issue where you'll see a message like this in the Netlify log after a
+build fails:
+
+> 9:20:26 PM: Attempting node version '10.14.2
+> ' from .nvmrc
+> 9:20:26 PM: Version '10.14.2
+> ' not found - try `nvm ls-remote` to browse available versions.
+> 9:20:26 PM: Failed to install node version '10.14.2
+> '
+
+Those forced newlines sure look weird, don't they? That's because there's a newline in the
+`.nvmrc` file that Netlify uses to determine what version of Node to use. (A similar
+problem can also crop up with `.ruby-version`.)
+
+Oftentimes these newlines are automatically added by your editor, so make sure it hasn't
+been configured to do so. In PhpStorm, this setting can be found by going to 
+*File | Settings | Editor | General --> Other ---> Ensure line feed at file end on Save*.
+[Source](https://intellij-support.jetbrains.com/hc/en-us/community/posts/207071445-On-save-new-line-added-to-end-of-file-How-stop-this-)
+
 ## Notes
 
 ### Cache-busting and Hashes
@@ -119,3 +140,8 @@ that operates at runtime to determine what the correct hashed filename is. Fortu
 with Netlify such a system is not necessary: Netlify has [Instant Cache Invalidation](https://www.netlify.com/blog/2015/09/11/instant-cache-invalidation/)
 that using its own fingerprinting of assets to determine when they've changed an
 instantly invalidate those items cached across its CDN.
+
+## Thanks and Acknowledgements
+
+The webpack configuration for this project borrows heavily from the excellent work
+done on [Sage](https://github.com/roots/sage) by the [Roots team](https://roots.io).
