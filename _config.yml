@@ -46,3 +46,4 @@ exclude:
   - .ruby-version
   - netlify.toml
   - build.json
+  - README.md
