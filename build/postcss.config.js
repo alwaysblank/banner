@@ -20,7 +20,7 @@ module.exports = ({file, options}) => {
   return {
     parser: options.enabled.optimize ? 'postcss-safe-parser' : undefined,
     plugins: [
-      tailwindcss(`./build/tailwind.js`),
+      tailwindcss(`./build/tailwind.config.js`),
       postcssPresetEnv(),
       cleancss(options.enabled.optimize ? cleancssConfig : false),
     ]

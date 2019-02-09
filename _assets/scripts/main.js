@@ -1,10 +1,8 @@
 import _ from 'lodash';
 
-console.log('webpacked!');
-
 function component() {
-  let element = document.createElement('div');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  let element = document.createElement(`div`);
+  element.innerHTML = _.join([`Hello`, `webpack`], ` `);
 
   return element;
 }

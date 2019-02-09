@@ -21,7 +21,6 @@ const config = merge(
         enabled: {
             sourceMaps: !isProduction,
             optimize: isProduction,
-            imagemin: isProduction,
             watcher: !!argv.watch,
             purgecss: isProduction,
         },
